@@ -1,9 +1,12 @@
 {
   "functions": {
     "targets": [
-      "web_weather_app_function"
+      "weather_backend"
     ],
     "ignore": [],
     "source": "functions"
+  },
+  "client": {
+    "source": "client"
   }
 }
