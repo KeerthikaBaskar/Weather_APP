@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "targets": [
+      "web_weather_app_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  }
+}

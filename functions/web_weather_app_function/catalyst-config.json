@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"name": "web_weather_app_function",
+		"stack": "node20",
+		"type": "advancedio",
+		"env_variables": {}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}

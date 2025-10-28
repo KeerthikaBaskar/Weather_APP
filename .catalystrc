@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "24137000000011123",
+      "name": "WebWeatherApp",
+      "domain": {
+        "id": "50035223879",
+        "name": "webweatherapp-60056442314.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60056442314",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

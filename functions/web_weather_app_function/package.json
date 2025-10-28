@@ -1,0 +1,9 @@
+{
+	"name": "web_weather_app_function",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "keerthikab299@gmail.com",
+	"dependencies": {
+		"zcatalyst-sdk-node": "latest"
+	}
+}
