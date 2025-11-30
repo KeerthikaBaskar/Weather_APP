@@ -152,7 +152,7 @@
     </div>
   </div>
 
-  <script>
+  <!-- <script>
     function handleKeyPress(event) {
       if (event.key === 'Enter') getWeather();
     }
@@ -215,6 +215,80 @@
       errorDiv.textContent = message;
       errorDiv.classList.add('show');
     }
-  </script>
+  </script> -->
+
+
+  <script>
+  // 👉 Call this when user presses Enter in the input
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') getWeather();
+  }
+
+  // 🔗 Gravitee Gateway URL (LAN)
+  const GATEWAY_URL = 'http://192.168.1.9:8082/weather/api/weather';
+
+  // 🔐 Your Gravitee API Key
+  const GRAVITEE_API_KEY = 'f5244233-860c-401d-a56f-7333f3aadd40'; // <-- Replace this
+
+  async function getWeather() {
+    const city = document.getElementById('cityInput').value.trim();
+
+    if (!city) {
+      showError('Please enter a city name');
+      return;
+    }
+
+    // Hide previous results/errors
+    document.getElementById('weatherResult').classList.remove('show');
+    document.getElementById('error').classList.remove('show');
+    document.getElementById('loading').classList.add('show');
+
+    try {
+      // 🔥 Calling your Weather API through Gravitee Gateway
+      const response = await fetch(GATEWAY_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Gravitee-Api-Key': GRAVITEE_API_KEY  // <-- Important
+        },
+        body: JSON.stringify({ city })
+      });
+
+      const data = await response.json();
+      document.getElementById('loading').classList.remove('show');
+
+      if (!response.ok || !data.success) {
+        showError(data.error || 'City not found');
+        return;
+      }
+
+      displayWeather(data.data);
+
+    } catch (error) {
+      document.getElementById('loading').classList.remove('show');
+      showError('⚠️ Failed to fetch weather data via Gravitee.');
+      console.error(error);
+    }
+  }
+
+  function displayWeather(data) {
+    document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
+    document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°C`;
+    document.getElementById('description').textContent = data.weather[0].description;
+    document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}°C`;
+    document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+    document.getElementById('windSpeed').textContent = `${data.wind.speed} m/s`;
+    document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
+
+    document.getElementById('weatherResult').classList.add('show');
+  }
+
+  function showError(message) {
+    const errorDiv = document.getElementById('error');
+    errorDiv.textContent = message;
+    errorDiv.classList.add('show');
+  }
+</script>
+
 </body>
 </html>
