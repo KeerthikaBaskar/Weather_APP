@@ -225,10 +225,10 @@
   }
 
   // 🔗 Gravitee Gateway URL (LAN)
-  const GATEWAY_URL = 'http://192.168.1.9:8082/weather/api/weather';
-
+  // const GATEWAY_URL = 'http://3.87.133.73:8082/weather/api/weather';
+  const GATEWAY_URL = 'https://3.87.133.73/gateway/weather/api/weather'; // <-- Replace this
   // 🔐 Your Gravitee API Key
-  const GRAVITEE_API_KEY = 'f5244233-860c-401d-a56f-7333f3aadd40'; // <-- Replace this
+  const GRAVITEE_API_KEY = 'feb387b3-d2d7-43bf-ab27-889826d23533'; // <-- Replace this
 
   async function getWeather() {
     const city = document.getElementById('cityInput').value.trim();
@@ -249,7 +249,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Gravitee-Api-Key': GRAVITEE_API_KEY  // <-- Important
+          'X-Gravitee-Api-Key': GRAVITEE_API_KEY
         },
         body: JSON.stringify({ city })
       });
